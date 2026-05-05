@@ -5,13 +5,16 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const sessions = {};
 
+const mainMenu = () =>
+  Markup.inlineKeyboard([
+    [Markup.button.callback("📊 Calculate Risk", "calculate")],
+    [Markup.button.webApp("🌐 Open Meonix Risk", process.env.WEB_APP_URL)],
+  ]);
+
 bot.start((ctx) => {
   ctx.reply(
     "🚀 Welcome to Meonix Risk\n\nCalculate your crypto trade risk before opening a position.",
-    Markup.inlineKeyboard([
-      [Markup.button.callback("📊 Calculate Risk", "calculate")],
-      [Markup.button.url("🌐 Open Web App", process.env.WEB_APP_URL)],
-    ])
+    mainMenu()
   );
 });
 
@@ -91,11 +94,11 @@ bot.on("text", (ctx) => {
         `⚖️ Risk/Reward: 1:${rr.toFixed(2)}`,
       Markup.inlineKeyboard([
         [Markup.button.callback("🔁 Calculate Again", "calculate")],
-        [Markup.button.url("🌐 Open Web App", process.env.WEB_APP_URL)],
+        [Markup.button.webApp("🌐 Open Meonix Risk", process.env.WEB_APP_URL)],
       ])
     );
   }
 });
 
 bot.launch();
-console.log("Meonix Risk Bot running...");
+console.log("Meonix Risk Bot running as Telegram Mini App...");

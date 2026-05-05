@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { supabase } from "./supabase";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://meonix-risk.onrender.com/api";
 const USERS_STORAGE_KEY = "meonix_users";
 const CURRENT_USER_STORAGE_KEY = "meonix_current_user";
 
